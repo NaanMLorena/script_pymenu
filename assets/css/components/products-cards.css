@@ -1,4 +1,4 @@
-@import url(/assets/css/global/variables.css);
+@import url(assets/css/global/variables.css);
 
 .card {
     background: var(--card-bg);
