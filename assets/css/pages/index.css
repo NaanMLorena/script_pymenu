@@ -1,0 +1,61 @@
+@import url(/assets/css/global/variables.css);
+@import url(/assets/css/global/normalize.css);
+@import url(/assets/css/components/products-cards.css);
+@import url(/assets/css/components/category-buttons.css);
+@import url(/assets/css/components/cart.css);
+@import url(/assets/css/components/header.css);
+@import url(/assets/css/components/loader.css);
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    min-height: 100vh;
+    align-items: start;
+}
+
+.menu-section {
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.category-buttons {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.category-buttons::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.mobile-cart-bar,
+.btn-close-mobile {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .app-layout {
+        display: block;
+    }
+
+    .menu-section {
+        padding: 1.5rem 1rem 6.5rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}

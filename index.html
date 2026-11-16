@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/pages/index.css">
+    <title>ScriptMenu</title>
+</head>
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Preparando o cardápio...</p>
+    </div>
+
+    <div class="app-layout">
+        
+        <!-- COLUNA ESQUERDA: Cardápio -->
+        <main class="menu-section">
+            
+            <!-- NOVA FAIXA SUPERIOR DO RESTAURANTE -->
+            <header class="restaurant-header">
+                <div class="restaurant-brand">
+                    <!-- Troque o src pelo link ou caminho da sua logo -->
+                    <img src="https://instagram.fsdu3-1.fna.fbcdn.net/v/t51.82787-19/900716619_18179814958393148_2613710162811611381_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=103&_nc_map=urlgen_bucketless&ig_cache_key=GEvYrzU8Z60EcpZAAPXoNoiLw0UkbmNDAQAB1501500j-ccb7-5&ccb=7-5&_nc_sid=669407&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMyIn0%3D&_nc_ohc=zXKaDlkyWZkQ7kNvwG8JRBY&_nc_oc=AdprwTEUNcxCiCTAzD6pMt7W3MFBgTW_JrmzwNkXap09oM0bHM7MWArxEY_8soxopxJZ9-B1Fninwy862l8l6nlZ&_nc_zt=24&_nc_ht=instagram.fsdu3-1.fna&_nc_gid=fcouPOYh_iF8-p9zra1wGw&_nc_ss=7b2a8&_nc_ct=RQgsPBUCFQIAAAA&oh=00_AQQz6_PDmNgUGszob2WjnljOeLT35o2c3sh9y51UYSJY9g&oe=6AFF9F9C" alt="Logo do Restaurante" class="restaurant-logo">
+                    
+                    <div class="restaurant-details">
+                        <div class="restaurant-title-row">
+                            <h1 class="restaurant-name">PyMenu Burger & Grill</h1>
+                            <span id="store-status" class="status-badge open">● Aberto agora</span>
+                        </div>
+                        <p class="restaurant-bio">Hambúrgueres artesanais, porções crocantes e bebidas geladas.</p>
+                        
+                        <div class="restaurant-meta">
+                            <span>📍 Rua Principal, 123 - Centro</span>
+                            <span>🕒 Seg a Dom: 18h às 23h30</span>
+                            <span>🛵 Entrega: 30-45 min</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="category-filters" class="category-buttons"></div>
+            <div id="products-list" class="container"></div>
+        </main>
+
+        <!-- COLUNA DIREITA: Painel do Pedido (Desktop) -->
+        <aside id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h2>Seu Pedido</h2>
+                <button id="btn-close-cart" class="btn-close-mobile">&times;</button>
+            </div>
+
+            <div id="cart-items-list" class="cart-items">
+                <p class="cart-empty">Seu carrinho está vazio.<br>Escolha algo delicioso ao lado!</p>
+            </div>
+
+            <div class="cart-footer">
+                <div class="customer-form">
+                    <input type="text" id="customer-name" class="form-input" placeholder="Seu nome *" required>
+                    <input type="text" id="customer-address" class="form-input" placeholder="Seu endereço *" required>
+                    
+                    <input type="text" id="order-notes" class="form-input" placeholder="Observações (opcional)"></input>
+
+                    <select id="payment-method" class="form-input" required>
+                        <option value="" disabled selected>Forma de pagamento *</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão na Entrega">Cartão na Entrega</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+
+                    <input type="text" id="change-for" class="form-input" placeholder="Troco para quanto? (Ex: R$ 50,00)" style="display: none;"></input>
+                </div>
+
+                <div class="cart-total-row">
+                    <span>Total</span>
+                    <span id="cart-total-price">R$ 0,00</span>
+                </div>
+                <button id="btn-finalizar-whatsapp" class="btn-place-order">Finalizar Pedido</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <div id="mobile-cart-bar" class="mobile-cart-bar">
+        <span id="mobile-cart-summary">0 itens • R$ 0,00</span>
+        <button id="btn-open-cart" class="btn-open-mobile">Ver Sacola</button>
+    </div>
+
+    <script type="module" src="./assets/js/pages/index.js"></script>
+</body>
+
+</html>

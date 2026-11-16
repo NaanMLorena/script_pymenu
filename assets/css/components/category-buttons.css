@@ -1,0 +1,27 @@
+@import url(/assets/css/global/variables.css);
+
+.btn-filter {
+    background-color: var(--card-bg);
+    color: #4b5563;
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.btn-filter:hover {
+    border-color: var(--cor-destaque);
+    color: var(--cor-destaque);
+}
+
+.btn-filter.active {
+    background-color: var(--cor-destaque);
+    color: #ffffff;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.25);
+}

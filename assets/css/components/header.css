@@ -1,0 +1,96 @@
+@import url(/assets/css/global/variables.css);
+
+.restaurant-header {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow);
+}
+
+.restaurant-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.restaurant-logo {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--cor-destaque);
+    flex-shrink: 0;
+    background-color: var(--bg-color);
+}
+
+.restaurant-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.restaurant-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.restaurant-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+/* Etiqueta de Aberto / Fechado */
+.status-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.status-badge.open {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.status-badge.closed {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.restaurant-bio {
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.restaurant-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+/* Ajuste responsivo do cabeçalho no celular */
+@media (max-width: 600px) {
+    .restaurant-header {
+        padding: 1.25rem;
+    }
+
+    .restaurant-brand {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .restaurant-title-row,
+    .restaurant-meta {
+        justify-content: center;
+    }
+}
