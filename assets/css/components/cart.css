@@ -1,4 +1,4 @@
-@import url(/assets/css/global/variables.css);
+@import url(../global/variables.css);
 
 .cart-sidebar {
     background-color: var(--card-bg);
