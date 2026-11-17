@@ -1,10 +1,17 @@
 let restaurantTelephone = "";
 
-export function getTelephone(telephone) {
-    restaurantTelephone = telephone;
+let cart = [];
+let deliveryFee = 0;
+let deliveryType = "entrega"
+
+export function getTelephone(telephoneFromSheet) {
+    restaurantTelephone = telephoneFromSheet;
 }
 
-let cart = [];
+export function setDeliveryFee(feeFromSheet) {
+    deliveryFee = parseFloat(String(feeFromSheet || 0).replace(',', '.')) || 0;
+    updateCartDisplay();
+}
 
 export function addToCart(product) {
     const existingItem = cart.find((item) => String(item.id) === String(product.id));
@@ -41,16 +48,24 @@ export function updateCartDisplay() {
     const cartTotalElement = document.getElementById("cart-total-price");
     const mobileBar = document.getElementById("mobile-cart-bar");
     const mobileSummary = document.getElementById("mobile-cart-summary");
+    const feeDisplay = document.getElementById("delivery-fee-display");
 
     if (!cartListContainer || !cartTotalElement) return;
 
+    const currentFee = deliveryType === "entrega" ? deliveryFee : 0;
+    if (feeDisplay) {
+        feeDisplay.textContent = deliveryType === "entrega"
+            ? `R$ ${currentFee.toFixed(2).replace('.', ',')}`
+            : "Grátis (Retirada)";
+    }
+
     if (cart.length === 0) {
         cartListContainer.innerHTML = '<p class="cart-empty">Seu carrinho está vazio.<br>Escolha algo delicioso ao lado!</p>';
-        cartTotalElement.textContent = "R$ 0,00";
+        cartTotalElement.textContent = `R$ ${currentFee.toFixed(2).replace('.', ',')}`;
         if (mobileBar) mobileBar.classList.remove("has-items");
 
         const sidebar = document.getElementById("cart-sidebar");
-        if (sedebar) sidebar.classList.remove("open-mobile");
+        if (sidebar) sidebar.classList.remove("open-mobile");
         return;
     }
 
@@ -80,7 +95,8 @@ export function updateCartDisplay() {
         cartListContainer.innerHTML += itemHTML;
     });
 
-    const formattedTotal = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+    const finalTotal = totalPrice + currentFee;
+    const formattedTotal = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
     cartTotalElement.textContent = formattedTotal;
 
     if (mobileBar && mobileSummary) {
@@ -125,6 +141,23 @@ document.addEventListener("change", (event) => {
     }
 });
 
+document.addEventListener("click", (event) => {
+    const btnDelivery = event.target.closest(".btn-delivery");
+    if (btnDelivery) {
+        document.querySelectorAll(".btn-delivery").forEach((btn) => btn.classList.remove("active"));
+        btnDelivery.classList.add("active");
+
+        deliveryType = String(btnDelivery.dataset.type || "entrega").toLowerCase().trim();
+
+        const addressInput = document.getElementById("customer-address");
+        if (addressInput) {
+            addressInput.style.display = deliveryType === "entrega" ? "block" : "none";
+        }
+
+        updateCartDisplay();
+    }
+});
+
 export function finalizeOrderWhatsApp() {
     if (cart.length === 0) {
         alert("Seu carrinho está vazio. Adicione produtos antes de finalizar o pedido.");
@@ -137,14 +170,18 @@ export function finalizeOrderWhatsApp() {
     const change = document.getElementById("change-for")?.value.trim();
     const notes = document.getElementById("order-notes")?.value.trim();
 
-    if (!name || !adress || !payment) {
-        alert("Por favor, preenche seu Nome, Endereço e a Forma de Pagamento.");
+    // Parênteses corrigidos na validação do endereço
+    if (!name || (deliveryType === "entrega" && !adress) || !payment) {
+        alert("Por favor, preencha os campos obrigatórios antes de finalizar.");
         return;
     }
 
     let message = "NOVO PEDIDO\n\n";
+    message += `Tipo: ${deliveryType === "entrega" ? "Entrega" : "Retirada no Local"}\n`;
     message += `Nome: ${name}\n`;
-    message += `Endereço: ${adress}\n`;
+    if (deliveryType === "entrega") {
+        message += `Endereço: ${adress}\n`;
+    }
     message += `Forma de Pagamento: ${payment}\n`;
     if (payment.toLowerCase() === "dinheiro" && change) {
         message += `Troco para: R$ ${change}\n`;
@@ -163,10 +200,19 @@ export function finalizeOrderWhatsApp() {
         message += `\nObservações: ${notes}\n`;
     }
 
-    message += `\nTOTAL: R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+    const currentFee = deliveryType === "entrega" ? deliveryFee : 0;
+    const finalTotal = totalPrice + currentFee;
+
+    if (deliveryType === "entrega") {
+        message += `\nTaxa de Entrega: R$ ${currentFee.toFixed(2).replace('.', ',')}`;
+    }
+
+    message += `\nTOTAL: R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${restaurantTelephone}?text=${encodedMessage}`;
 
     window.open(whatsappURL, '_blank');
 }
+
+

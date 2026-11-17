@@ -55,9 +55,13 @@
             </div>
 
             <div class="cart-footer">
+                <div class="delivery-options">
+                    <button type="button" class="btn-delivery active" data-type="entrega">🛵 Entrega</button>
+                    <button type="button" class="btn-delivery" data-type="retirada">🏪 Retirada</button>
+                </div>
                 <div class="customer-form">
                     <input type="text" id="customer-name" class="form-input" placeholder="Seu nome *" required>
-                    <input type="text" id="customer-address" class="form-input" placeholder="Seu endereço *" required>
+                    <input type="text" id="customer-address" class="form-input" placeholder="Endereço completo *" required>
                     
                     <input type="text" id="order-notes" class="form-input" placeholder="Observações (opcional)"></input>
 
@@ -69,6 +73,10 @@
                     </select>
 
                     <input type="text" id="change-for" class="form-input" placeholder="Troco para quanto? (Ex: R$ 50,00)" style="display: none;"></input>
+                </div>
+                <div class="cart-fee-row">
+                    <span>Taxa de Entrega</span>
+                    <span id="delivery-fee-display">R$ 0,00</span>
                 </div>
 
                 <div class="cart-total-row">

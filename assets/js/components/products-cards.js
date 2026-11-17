@@ -1,5 +1,5 @@
 import { setupCategories } from './category-buttons.js';
-import { getTelephone, addToCart } from './cart.js';
+import { getTelephone, setDeliveryFee, addToCart } from './cart.js';
 import { updateStoreStatus } from './store-status.js';
 
 const urlDoScript = "https://script.google.com/macros/s/AKfycby2Sx3u4vCPEx8yTlnBmvIVnxN5l8AOFwoK7M1mwJV80qUUC10ic3q5h9D_XHUEm98Z/exec";
@@ -17,6 +17,7 @@ export async function SearchDataAndCreateCards() {
         allItems = data.produtos;
 
         getTelephone(data.telefone);
+        setDeliveryFee(data.taxaEntrega);
         updateStoreStatus(data.status);
         setupCategories(allItems);
         CreateCards(allItems);

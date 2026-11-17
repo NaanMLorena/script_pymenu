@@ -237,3 +237,40 @@
         cursor: pointer;
     }
 }
+
+/* Botões de Entrega vs Retirada */
+.delivery-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    background-color: var(--bg-color);
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.btn-delivery {
+    padding: 8px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-delivery.active {
+    background-color: var(--card-bg);
+    color: var(--cor-destaque);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.cart-fee-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
