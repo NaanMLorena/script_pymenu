@@ -86,3 +86,31 @@
 .card-button:active {
     transform: scale(0.96);
 }
+
+.card-img-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* Remove o margin-bottom da .card-img antiga já que agora o wrapper cuida disso */
+.card-img-wrapper .card-img {
+    margin-bottom: 0;
+}
+
+.card-badge {
+    position: absolute;
+    /* top: 10px;
+    left: 10px; */
+    /* background-color: var(--cor-destaque); */
+    background-color: var(--card-bg);
+    color: var(--cor-destaque);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-bottom-right-radius: 10px;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

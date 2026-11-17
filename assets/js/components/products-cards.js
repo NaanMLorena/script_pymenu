@@ -39,9 +39,17 @@ export function CreateCards(itemsList) {
         if (String(item.disponivel).toLowerCase() === "sim") {
             const urlImagem = item.imagem ? item.imagem : "https://thumbs.dreamstime.com/b/nenhuma-imagem-da-unha-do-polegar-placeholder-para-f%C3%B3runs-blogues-e-web-site-148010362.jpg";
 
+            // NOVO: Cria a etiqueta HTML apenas se a coluna 'destaque' estiver preenchida
+            const badgeHTML = item.destaque 
+                ? `<span class="card-badge">${item.destaque}🔥</span>` 
+                : "";
+
             const cardHTML = `
             <div class="card">
-                <img class="card-img" src="${urlImagem}" alt="${item.nome}">
+                <div class="card-img-wrapper">
+                    ${badgeHTML}
+                    <img class="card-img" src="${urlImagem}" alt="${item.nome}">
+                </div>
                 <div class="card-conteudo">
                     <div class="card-header">
                         <h3 class="card-title">${item.nome}</h3>
