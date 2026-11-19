@@ -43,6 +43,11 @@ export function CreateCards(itemsList) {
             const badgeHTML = item.destaque 
                 ? `<span class="card-badge">${item.destaque}🔥</span>` 
                 : "";
+            
+            const priceHTML = item.preco_promocao
+                ? `<div class="prices"> <p class="preco-old">R$ ${item.preco}</p> <p class="preco">R$ ${item.preco_promocao}</p> </div> `
+                : `<p class="preco">R$ ${item.preco}</p>`;
+            
 
             const cardHTML = `
             <div class="card">
@@ -53,7 +58,7 @@ export function CreateCards(itemsList) {
                 <div class="card-conteudo">
                     <div class="card-header">
                         <h3 class="card-title">${item.nome}</h3>
-                        <p class="preco">R$ ${item.preco}</p>
+                        ${priceHTML}
                     </div>
                     <p class="descricao">${item.descricao}</p>
                 </div>

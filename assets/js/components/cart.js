@@ -15,6 +15,11 @@ export function setDeliveryFee(feeFromSheet) {
 
 export function addToCart(product) {
     const existingItem = cart.find((item) => String(item.id) === String(product.id));
+    
+    let productPrice = product.preco_promocao
+        ? product.preco_promocao
+        : product.preco;
+
 
     if (existingItem) {
         existingItem.quantidade += 1;
@@ -22,7 +27,7 @@ export function addToCart(product) {
         cart.push({
             id: product.id,
             nome: product.nome,
-            preco: parseFloat(String(product.preco).replace(',', '.')),
+            preco: parseFloat(String(productPrice).replace(',', '.')),
             imagem: product.imagem ? product.imagem : "https://thumbs.dreamstime.com/b/nenhuma-imagem-da-unha-do-polegar-placeholder-para-f%C3%B3runs-blogues-e-web-site-148010362.jpg",
             quantidade: 1
         });
@@ -74,7 +79,11 @@ export function updateCartDisplay() {
     let totalItems = 0;
 
     cart.forEach((item) => {
-        const subtotal = item.preco * item.quantidade;
+        let productPrice = item.preco_promocao
+            ? item.preco_promocao
+            : item.preco;
+
+        const subtotal = productPrice * item.quantidade;
         totalPrice += subtotal;
         totalItems += item.quantidade;
 
@@ -191,7 +200,11 @@ export function finalizeOrderWhatsApp() {
     let totalPrice = 0;
 
     cart.forEach((item) => {
-        const subtotal = item.preco * item.quantidade;
+        let productPrice = item.preco_promocao
+            ? item.preco_promocao
+            : item.preco;
+
+        const subtotal = productPrice * item.quantidade;
         totalPrice += subtotal;
         message += `${item.quantidade} x ${item.nome} - R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
     });

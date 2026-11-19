@@ -41,11 +41,25 @@
     margin: 0;
 }
 
+.prices {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
 .preco {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--cor-destaque);
     white-space: nowrap;
+}
+
+.preco-old {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--erased-text-color);
+    white-space: nowrap;
+    text-decoration: line-through;
 }
 
 .descricao {
